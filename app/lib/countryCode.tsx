@@ -2,6 +2,7 @@
 import lookup from 'country-code-lookup';
 import React, { useEffect, useState } from 'react';
 import { findFlagUrlByIso2Code } from 'country-flags-svg';
+import Image from "next/image";
 
 const CountryCode = () => {
 
@@ -53,8 +54,18 @@ const CountryCode = () => {
       {/* <h1>Country Code: {randomCountryCode || "Loading..."}</h1>
       <h1>Country Name: {randomCountryName || "Loading..."}</h1> */}
       <div className="flex justify-evenly items-center">
-        {countryFlag ? <img className="shadow-xl dark:shadow-gray-800 max-w-lg"
-        src={countryFlag} alt={`Country Flag`} /> : <p>Loading flag...</p>}
+        {countryFlag ? (
+          <Image 
+            className="shadow-xl dark:shadow-gray-800 max-w-lg"
+            src={countryFlag}
+            alt={'Country Flag'}
+            layout="intrinsic"
+            width={500}
+            height={300}
+          />
+        ) : (
+          <p>Loading flag...</p>
+        )}
         <div className="right-side flex flex-col">
           <h2 className="text-2xl font-semibold">Guess the country: </h2>
           <input 

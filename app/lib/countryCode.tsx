@@ -53,26 +53,30 @@ const CountryCode = () => {
     <div>
       {/* <h1>Country Code: {randomCountryCode || "Loading..."}</h1>
       <h1>Country Name: {randomCountryName || "Loading..."}</h1> */}
-      <div className="flex justify-evenly items-center">
+      <div className="flex flex-col justify-center items-center">
         {countryFlag ? (
           <Image 
             className="shadow-xl dark:shadow-gray-800 max-w-lg"
             src={countryFlag}
             alt={'Country Flag'}
-            layout="intrinsic"
             width={500}
             height={300}
           />
         ) : (
           <p>Loading flag...</p>
         )}
-        <div className="right-side flex flex-col">
+        <div className="flex flex-col pt-10">
           <h2 className="text-2xl font-semibold">Guess the country: </h2>
           <input 
             type="text" 
             className="bg-white rounded-sm text-black text-center"
             value={userCountryName} // Bind input to value state 
             onChange={handleInputChange} // Update state on input change
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                handleSubmit(); // Call handleSubmit on Enter key press
+              }
+            }}
           />
           <button onClick={handleSubmit}>Enter</button>
         </div>
